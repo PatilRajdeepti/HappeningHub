@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HappeningHub - Find. Filter. Attend!</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+        }
+        header {
+            background: linear-gradient(90deg, #072d53, #076476);
+            color: white;
+            padding: 40px;
+            font-size: 32px;
+            font-weight: bold;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        .logo {
+            position: absolute;
+            left: 20px;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+        }
+        .nav-links {
+            position: absolute;
+            right: 20px;
+            display: flex;
+            gap: 15px;
+        }
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: bold;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 12px 24px;
+            border-radius: 8px;
+            transition: background 0.3s ease-in-out;
+        }
+        .nav-links a:hover {
+            background: rgba(255, 255, 255, 0.4);
+        }
+        h1 {
+            margin: 0;
+            text-align: center;
+        }
+        .container {
+            padding: 60px;
+            max-width: 800px;
+            margin: auto;
+            text-align: center;
+        }
+        h2 {
+            font-size: 26px;
+            color: #144d85;
+            margin-bottom: 20px;
+        }
+        .cta-button {
+            display: inline-block;
+            padding: 12px 24px;
+            font-size: 18px;
+            font-weight: bold;
+            color: white;
+            background: #144d85;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background 0.3s ease-in-out;
+            margin: 10px;
+        }
+        .cta-button:hover {
+            background: #144d85;
+        }
+        .slideshow-container {
+            position: relative;
+            max-width: 800px;
+            margin: auto;
+            overflow: hidden;
+        }
+        .slides img {
+            width: 100%;
+            display: none;
+            border-radius: 10px;
+        }
+        footer {
+            background: #144d85;
+            color: white;
+            padding: 15px;
+            font-size: 16px;
+            text-align: center;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="https://www.shutterstock.com/image-vector/boy-reach-star-silhouette-logotemplate-600nw-789403693.jpg" alt="Logo" class="logo">
+        <h1>HappeningHub</h1>
+        <div class="nav-links">
+            <a href="about.html">About Us</a>
+            <a href="login.html">Login</a>
+        </div>
+    </header>
+    <div class="container">
+        <h2>Your Campus, Your Events, Your Way!</h2>
+        <p>Discover and attend the best events around you with personalized filters and real-time updates.</p>
+        <a href="explore.html" class="cta-button">Explore Events</a>
+        <a href="add-event.html" class="cta-button">Add Event</a>
+    </div>
+    <div class="slideshow-container">
+        <div class="slides">
+            <img src="https://img.freepik.com/free-vector/happy-tiny-business-people-dancing-having-fun-drinking-wine-corporate-party-team-building-activity-corporate-event-idea-concept-pinkish-coral-bluevector-isolated-illustration_335657-1414.jpg" alt="Exciting Events">
+            <img src="https://img.freepik.com/premium-vector/open-air-concert_23-2148657083.jpg?semt=ais_hybrid" alt="Fun with Friends">
+            <img src="https://img.freepik.com/free-photo/young-people-dancing-nightclub-party_53876-64613.jpg" alt="Nightlife Events">
+            <img src="https://png.pngtree.com/png-clipart/20220726/original/pngtree-business-concept-hackathon-programming-technology-png-image_8407360.png" alt="Music Festival">
+        </div>
+    </div>
+    <footer>
+        &copy; 2025 HappeningHub. All rights reserved.
+    </footer>
+    <script>
+        let slideIndex = 0;
+        function showSlides() {
+            let slides = document.querySelectorAll(".slides img");
+            for (let i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            slideIndex++;
+            if (slideIndex > slides.length) { slideIndex = 1; }
+            slides[slideIndex - 1].style.display = "block";
+            setTimeout(showSlides, 3000);
+        }
+        showSlides();
+    </script>
+</body>
+</html>

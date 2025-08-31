@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happening Hub</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: rgb(192, 192, 235);
+            text-align: center;
+        }
+        .header {
+            font-family: 'Poppins';
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgb(154, 154, 235);
+            padding: 20px 40px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            font-size: 24px;
+        }
+        h1 {
+            font-family: 'Poppins', cursive;
+            font-size: 60px;
+            color: #d62828;
+            text-align: center;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+        }
+        .search-section {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .search-bar {
+            display: flex;
+            align-items: center;
+            border: 1px solid black;
+            background-color: white;
+            border-radius: 20px;
+            padding: 5px 10px;
+            width: 300px;
+        }
+        .search-bar input {
+            border: none;
+            outline: none;
+            flex: 1;
+            font-size: 18px;
+        }
+        .search-bar button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 20px;
+        }
+        .filter-dropdown {
+            padding: 5px;
+            font-size: 16px;
+            border-radius: 10px;
+            border: 1px solid black;
+        }
+        .event-list {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            margin-top: 40px;
+            justify-items: center;
+        }
+        .event-card {
+            font-family: Fantasy;
+            width: 220px;
+            text-align: center;
+            cursor: pointer;
+        }
+        .event-card img {
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            border: 4px solid #333;
+            transition: border-radius 0.3s ease-in-out, transform 0.2s;
+        }
+        .event-card img:hover {
+            border-radius: 50%;
+            transform: scale(1.1);
+        }
+        .user-icon {
+            font-size: 32px;
+            cursor: pointer;
+        }
+        .profile-modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            width: 300px;
+        }
+        .profile-modal h2 {
+            margin-bottom: 10px;
+        }
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1 style="color:black; font-size: 42px;">HappeningHub</h1>
+        <div class="search-section">
+            <div class="search-bar">
+                <input type="text" placeholder="Search events..." id="search">
+                <button onclick="searchEvents()">🔍</button>
+            </div>
+            <select class="filter-dropdown" id="filterLocation">
+                <option value="">All Locations</option>
+                <option value="New York">MUMBAI</option>
+                <option value="Los Angeles">DELHI</option>
+                <option value="Chicago">BANGLORE</option>
+                <option value="San Francisco">PUNE</option>
+            </select>
+            <select class="filter-dropdown" id="filterCategory">
+                <option value="">All Categories</option>
+                <option value="Hackathons">Hackathons</option>
+                <option value="Fest">Fest</option>
+                <option value="Movies">Movies</option>
+                <option value="College Event">College Events</option>
+                <option value="Entertainment">Entertainment</option>
+                <option value="Workshop">Workshops</option>
+            </select>
+        </div>
+        <div class="user-icon" onclick="openProfile()">👤</div>
+    </div>
+    
+    <div class="event-list" id="dynamicEvents">
+        <div class="event-card" onclick="openCategoryPage('tech.html')">
+            
+            <img src="https://i.pinimg.com/474x/8c/d5/c3/8cd5c38d50c3020d0607a198083b246f.jpg" alt="Tech" onerror="this.onerror=null; this.src='images/placeholder.jpg';">
+            
+            <p>Hackathons</p>
+        </div>
+        <div class="event-card" onclick="openCategoryPage('fest.html')">
+           
+            <img src="https://i.pinimg.com/736x/0b/60/52/0b60522f443304a8c79fe2c141aa30c1.jpg" alt="Fest" onerror="this.onerror=null; this.src='images/placeholder.jpg';">
+            
+            <p>Fest</p>
+        </div>
+        <div class="event-card" onclick="openCategoryPage('MOV.HTML')">
+            
+            <img src="https://i.pinimg.com/474x/dc/73/f5/dc73f51dc58aa95cc5fa33845db78aa6.jpg" alt="Entertainment" onerror="this.onerror=null; this.src='images/placeholder.jpg';">
+           
+            <p>Movies</p>
+        </div>
+        <div class="event-card" onclick="openCategoryPage('COEVENT.HTML')">
+            
+            <img src="https://i.pinimg.com/474x/d6/b2/d2/d6b2d29f413fed8484f005f3b7d42b49.jpg" alt="College Event" onerror="this.onerror=null; this.src='images/placeholder.jpg';">
+            
+            <p>College Event</p>
+        </div>
+        <div class="event-card" onclick="openCategoryPage('ENT.HTML')">
+            
+            <img src="https://i.pinimg.com/474x/52/27/90/522790997c99597006c06fcafe3a78e7.jpg" alt="Meetups" onerror="this.onerror=null; this.src='images/placeholder.jpg';">
+            
+            <p>Entertainment</p>
+        </div>
+        <div class="event-card" onclick="openCategoryPage('WORK.HTML')">
+            
+            <img src="https://i.pinimg.com/474x/a9/c7/10/a9c710b2288ebfd2b18650c9dcd956fb.jpg" alt="Workshop" onerror="this.onerror=null; this.src='images/placeholder.jpg';">
+           
+            <p>Workshop</p>
+        </div>
+    </div>
+    
+    <div class="profile-modal" id="profileModal">
+        <span class="close-btn" onclick="closeProfile()">×</span>
+        <h2>User Profile</h2>
+        <p><strong>Name:</strong> John Doe</p>
+        <p><strong>Email:</strong> john.doe@example.com</p>
+        <p><strong>Joined:</strong> January 2023</p>
+    </div>
+    
+    <div class="profile-modal" id="profileModal">
+        <span class="close-btn" onclick="closeProfile()">×</span>
+        <h2>User Profile</h2>
+        <p><strong>Name:</strong> John Doe</p>
+        <p><strong>Email:</strong> john.doe@example.com</p>
+        <p><strong>Joined:</strong> January 2023</p>
+    </div>
+    
+    <script>
+        function searchEvents() {
+            let query = document.getElementById("search").value.trim();
+            let locationFilter = document.getElementById("filterLocation").value;
+            
+            
+            let message = `Searching for: ${query || "Any Event"}`;
+            if (locationFilter) message += ` in ${locationFilter}`;
+            
+            
+            alert(message);
+        }
+        
+        function openCategoryPage(categoryPage) {
+            window.location.href = categoryPage;
+        }
+
+        function openProfile() {
+            document.getElementById("profileModal").style.display = "block";
+        }
+
+        function closeProfile() {
+            document.getElementById("profileModal").style.display = "none";
+        }
+        document.getElementById('eventForm').addEventListener('submit', function(event) {
+     event.preventDefault();
+    
+     const eventData = {
+         name: document.getElementById('eventName').value,
+         date: document.getElementById('eventDate').value,
+         time: document.getElementById('eventTime').value,
+         venue: document.getElementById('eventVenue').value,
+         website: document.getElementById('eventWebsite').value,
+         description: document.getElementById('eventDescription').value
+     };
+
+     // Get existing events or initialize as empty array
+     let events = JSON.parse(localStorage.getItem("events")) || [];
+     events.push(eventData);
+     localStorage.setItem("events", JSON.stringify(events));
+
+     alert("Event added successfully!");
+     document.getElementById('eventForm').reset();
+     });
+     window.onload = function () {
+        let events = JSON.parse(localStorage.getItem("events")) || [];
+        const container = document.getElementById("dynamicEvents");
+    
+        if (events.length === 0) {
+            container.innerHTML = "<p>No events found.</p>";
+            return;
+        }
+    
+        events.forEach(event => {
+            const card = document.createElement("div");
+            card.className = "event-card";
+            card.innerHTML = `
+                <img src='https://i.pinimg.com/474x/8c/d5/c3/8cd5c38d50c3020d0607a198083b246f.jpg' alt="event">
+                <p><strong>${event.name}</strong></p>
+                <p>${event.date} @ ${event.time}</p>
+                <p>${event.venue}</p>
+                <a href="${event.website}" target="_blank">Visit Website</a>
+            `;
+            container.appendChild(card);
+        });
+    }
+    </script>
+    
+</body>
+</html>

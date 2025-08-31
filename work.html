@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>More Events - Happening Hub</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: rgb(192, 192, 235);
+            text-align: center;
+        }
+        .header {
+            font-family: cursive;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            padding: 20px 40px;
+            box-shadow: none;
+            font-size: 24px;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 42px;
+            color: black;
+        }
+        .event-list {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            margin-top: 40px;
+            justify-items: center;
+        }
+        .event-card {
+            font-family: Fantasy;
+            width: 300px;
+            text-align: center;
+            cursor: pointer;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .event-card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border: 4px solid #333;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>WORKSHOPS</h1>
+    </div>
+    
+    <div class="event-list">
+        <div class="event-card">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRerjxjMtGqS_wuiLL8kAkJ5PtNl6aS4XjAzA&s" alt="HackWithInfy">
+            <p>CodeStack Bootcamp</p>
+        </div>
+        <div class="event-card">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRhpBgQRMFfLm3XgL4kfccecLuOwOUZNSSy9g&s" alt="Walmart Hackathon">
+            <p>FutureFrame AI</p>
+        </div>
+        <div class="event-card">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPi6uzicYGclp7-1Z58O7pqXhO5-gjWm3JDQ&s" alt="Flipkart Runway">
+            <p>Futurepreneurs Hub</p>
+        </div>
+    </div>
+</body>
+</html>

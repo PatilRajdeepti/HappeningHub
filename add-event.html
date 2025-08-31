@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Event - HappeningHub</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #145494;
+            text-align: center;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        h2 {
+            color: #113d6a;
+        }
+        label {
+            display: block;
+            margin: 10px 0 5px;
+            font-weight: bold;
+        }
+        input, textarea,select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        button {
+            padding: 12px 20px;
+            font-size: 16px;
+            background: #113d6a;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #113d6a;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>ADD NEW EVENT</h2>
+        <form action="/post" method="post">
+            <label for="eventName">Event Name:</label>
+            <input type="text" id="eventName" name="eventName" required>
+
+            <label for="eventDate">Date:</label>
+            <input type="date" id="eventDate" name="eventDate" required>
+
+            <label for="eventTime">Time:</label>
+            <input type="time" id="eventTime" name="eventTime" required>
+
+            <label for="eventVenue">Venue:</label>
+            <input type="text" id="eventVenue" name="eventVenue" required>
+
+            <label for="eventWebsite">Official Website:</label>
+            <input type="url" id="eventWebsite" name="eventWebsite" required>
+
+            <label for="eventDomain">Event Domain:</label>
+            <select id="eventDomain" name="eventDomain" required>
+                <option value="hackathon">Hackathon</option>
+                <option value="fest">Fest</option>
+                <option value="movie">Movie</option>
+                <option value="college-event">College Event</option>
+                <option value="entertainment">Entertainment</option>
+                <option value="workshop">Workshop</option>
+            </select>
+
+            <label for="eventDescription">Description:</label>
+            <textarea id="eventDescription" name="eventDescription" rows="4" required></textarea>
+
+            <button type="submit">Submit Event</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('eventForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            const eventData = {
+                name: document.getElementById('eventName').value,
+                date: document.getElementById('eventDate').value,
+                time: document.getElementById('eventTime').value,
+                venue: document.getElementById('eventVenue').value,
+                website: document.getElementById('eventWebsite').value,
+                domain: document.getElementById('eventDomain').value,
+                description: document.getElementById('eventDescription').value
+            };
+            
+            console.log("Event Submitted:", eventData);
+            alert("Event added successfully!");
+            document.getElementById('eventForm').reset();
+        });
+    </script>
+</body>
+</html>

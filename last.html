@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hackathon Details</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to right, #8360c3, #2ebf91);
+            text-align: center;
+            color: white;
+            padding: 20px;
+        }
+        .container {
+            background: white;
+            color: black;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);
+            display: inline-block;
+            text-align: left;
+            max-width: 600px;
+            transition: transform 0.3s ease-in-out;
+        }
+        .container:hover {
+            transform: scale(1.05);
+        }
+        img {
+            width: 100%;
+            border-radius: 10px;
+        }
+        h1, h2 {
+            font-size: 24px;
+            text-align: center;
+        }
+        p, ul {
+            font-size: 16px;
+            margin: 10px 0;
+        }
+        ul {
+            padding-left: 20px;
+        }
+        a {
+            display: block;
+            background: #ff5722;
+            color: white;
+            padding: 12px;
+            text-decoration: none;
+            border-radius: 6px;
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+            transition: background 0.3s ease;
+        }
+        a:hover {
+            background: #e64a19;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <img id="eventImage" src="" alt="Event Image">
+        <h1 id="eventTitle"></h1>
+        <p id="eventDescription"></p>
+
+        <p><strong>Organizer:</strong> <span id="organizer"></span></p>
+        <p><strong>Start Date:</strong> <span id="startDate"></span></p>
+        <p><strong>Registration Closes:</strong> <span id="regDeadline"></span></p>
+        <p><strong>Eligibility:</strong></p>
+        <ul id="eligibility"></ul>
+
+        <h2>Prize & Format</h2>
+        <p><strong>Prize Pool:</strong> <span id="prize"></span></p>
+        <p><strong>Event Format:</strong> <span id="format"></span></p>
+
+        <h2>Judging Criteria</h2>
+        <ul id="judging"></ul>
+
+        <h2>FAQ</h2>
+        <ul id="faq"></ul>
+
+        <a id="eventLink" href="#" target="_blank">Register Now</a>
+    </div>
+
+    <script>
+        // Event Data
+        const events = {
+            "HackWithInfy": {
+                title: "HackWithInfy",
+                description: "An annual coding competition by Infosys to identify top engineering talent.",
+                image: "data:image/jpeg;base64,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",
+                organizer: "Infosys",
+                startDate: "May 15, 2025",
+                regDeadline: "April 30, 2025",
+                eligibility: [
+                    "B.E./B.Tech/M.E./M.Tech students graduating in 2024 or 2025.",
+                    "Must be 18 years or older.",
+                    "Open to residents of India."
+                ],
+                prize: "$10,000 + Job Opportunities",
+                format: "Online + Onsite (Final Round at Infosys Campus)",
+                judging: ["Problem-solving skills", "Code efficiency", "Creativity"],
+                faq: [
+                    "Q: Can I participate in a team? A: No, it's an individual event.",
+                    "Q: Is there a registration fee? A: No, it's free.",
+                    "Q: Do participants get certificates? A: Yes, all participants receive certificates."
+                ],
+                link: "https://www.infosys.com/careers/hackwithinfy.html"
+            },
+            "WalmartHackathon": {
+                title: "Walmart Hackathon",
+                description: "A tech challenge by Walmart Global Tech for innovative problem-solving.",
+                image: "https://i.imgur.com/WalmartHackathon.jpg",
+                organizer: "Walmart Global Tech",
+                startDate: "June 10, 2025",
+                regDeadline: "May 20, 2025",
+                eligibility: ["Open to students and professionals."],
+                prize: "$5,000 + Internship Opportunities",
+                format: "Online",
+                judging: ["Technical feasibility", "Impact", "Scalability"],
+                faq: [
+                    "Q: Can I use any programming language? A: Yes, any is allowed.",
+                    "Q: Is it a team event? A: Yes, teams are allowed."
+                ],
+                link: "https://www.walmartglobaltech.com/"
+            }
+        };
+
+        // Get event name from URL
+        const urlParams = new URLSearchParams(window.location.search);
+        let eventName = urlParams.get('event');
+
+        // Default event if none is provided
+        if (!eventName || !events[eventName]) {
+            eventName = "HackWithInfy"; // Default event
+        }
+
+        const event = events[eventName];
+
+        document.getElementById('eventTitle').innerText = event.title;
+        document.getElementById('eventDescription').innerText = event.description;
+        document.getElementById('eventImage').src = event.image;
+        document.getElementById('organizer').innerText = event.organizer;
+        document.getElementById('startDate').innerText = event.startDate;
+        document.getElementById('regDeadline').innerText = event.regDeadline;
+        document.getElementById('prize').innerText = event.prize;
+        document.getElementById('format').innerText = event.format;
+        document.getElementById('eventLink').href = event.link;
+
+        // Function to populate lists
+        function populateList(elementId, items) {
+            const list = document.getElementById(elementId);
+            list.innerHTML = ""; // Clear existing items
+            items.forEach(item => {
+                let li = document.createElement("li");
+                li.innerText = item;
+                list.appendChild(li);
+            });
+        }
+
+        populateList('eligibility', event.eligibility);
+        populateList('judging', event.judging);
+        populateList('faq', event.faq);
+    </script>
+
+</body>
+</html>
